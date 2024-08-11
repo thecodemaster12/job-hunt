@@ -21,7 +21,7 @@ class JobListingController extends Controller
      */
     public function create()
     {
-        //
+        return 'ok';
     }
 
     /**

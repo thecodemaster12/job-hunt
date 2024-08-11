@@ -12,15 +12,16 @@ class OrganizationController extends Controller
      */
     public function index()
     {
-        $orgs = Organization::all();
+        $orgs = Organization::latest()->get();
         return view('organization.index', compact('orgs'));
     }
-
+    
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
+        return view('organization.create');
     }
     
     /**
@@ -28,10 +29,18 @@ class OrganizationController extends Controller
      */
     public function store(Request $request)
     {
-        return 'df';
-        //
+        $request->validate([
+            'name' => 'required|unique:organizations|min:6',
+            'email' => 'required|unique:organizations|email',
+        ]);
+        $org = new Organization();
+        $org->name = $request->name;
+        $org->email = $request->email;
+        $org->address = $request->address;
+        $org->save();
+        return redirect()->route('org.index');
     }
-
+    
     /**
      * Display the specified resource.
      */
@@ -39,7 +48,7 @@ class OrganizationController extends Controller
     {
         return view('organization.show', compact('id'));
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      */
@@ -47,20 +56,26 @@ class OrganizationController extends Controller
     {
         return view('organization.edit', compact('id'));
     }
-
+    
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Organization $organization)
     {
-        //
+        $organization->name = $request->name;
+        $organization->email = $request->email;
+        $organization->address = $request->address;
+        $organization->save();
+        $id = $organization->id; 
+        return redirect()->route('org.show', compact('id'));
     }
-
+    
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Organization $organization)
+    public function destroy(Organization $id)
     {
-        //
+        $id->delete();
+        return redirect()->route('org.index');
     }
 }

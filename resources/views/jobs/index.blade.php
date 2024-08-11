@@ -1,6 +1,8 @@
 <x-layout>
     <x-slot:pageTitle>Jobs</x-slot:pageTitle>
 
+    <a class="bg-blue-700 text-white py-3 px-4 rounded-md font-bold hover:bg-blue-500" href="/create">Create new Organization</a>
+
     @forelse ($jobs as $job)        
     <x-job>
         <x-slot:jobTitle>{{$job->title}}</x-slot:jobTitle>
