@@ -15,7 +15,8 @@ return new class extends Migration
         Schema::create('job_listings', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('location');
+            $table->text('body');
+            $table->string('address');
             $table->string('salary');
             $table->date('deadline');
             $table->foreignIdFor(Organization::class);

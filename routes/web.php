@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 // TODO JobListing
 Route::get('/', [JobListingController::class, 'index'])->name('job.index');
 Route::get('/create', [JobListingController::class, 'create'])->name('job.create');
+Route::post('/', [JobListingController::class, 'store'])->name('job.store');
 
 
 // TODO Organization
