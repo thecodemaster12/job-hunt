@@ -19,4 +19,8 @@
     The list is empty</h1>
     @endforelse
 
+    <div class="">
+        {{$jobs->links()}}
+    </div>
+
 </x-layout>

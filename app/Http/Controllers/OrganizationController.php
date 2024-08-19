@@ -60,13 +60,13 @@ class OrganizationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Organization $organization)
+    public function update(Request $request, Organization $id)
     {
-        $organization->name = $request->name;
-        $organization->email = $request->email;
-        $organization->address = $request->address;
-        $organization->save();
-        $id = $organization->id; 
+        $id->name = $request->name;
+        $id->email = $request->email;
+        $id->address = $request->address;
+        $id->save();
+        $id = $id->id; 
         return redirect()->route('org.show', compact('id'));
     }
     

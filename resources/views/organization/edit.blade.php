@@ -1,6 +1,6 @@
 <x-layout>
     <x-slot:pageTitle>Organization</x-slot:pageTitle>
-        <form action="/organization" method="POST">
+        <form action="/organization/{{$id->id}}" method="POST">
             @csrf
             @method('put')
             <div class="space-y-12">

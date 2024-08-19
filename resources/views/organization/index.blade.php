@@ -10,7 +10,7 @@
                 <div class="min-w-0 flex-auto">
                     <p class="text-md font-semibold leading-6 text-gray-900">{{$org->name}}</p>
                     <p class="mt-1 truncate text-sm leading-5 text-gray-500"><strong>Email: </strong>{{$org->email}}</p>
-                    <p class="mt-1 truncate text-sm leading-5 text-gray-500"><strong>Total Job Posted: </strong>{{count($org->job)}}</p>
+                    {{-- <p class="mt-1 truncate text-sm leading-5 text-gray-500"><strong>Total Job Posted: </strong>{{count($org->job)}}</p> --}}
                 </div>
             </div>
             <div class="hidden shrink-0 sm:flex sm:flex-col">

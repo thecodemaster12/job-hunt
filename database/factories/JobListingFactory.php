@@ -18,7 +18,7 @@ class JobListingFactory extends Factory
     {
         return [
             'title' => fake()->jobTitle(),
-            'body' => fake()->sentence(),
+            'body' => fake()->paragraph(12),
             'address' => fake()->address(),
             'salary' => fake()->numberBetween(20000, 100000),
             'deadline' => fake()->dateTimeBetween('now', '+1 week'),

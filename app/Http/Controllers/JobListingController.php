@@ -13,7 +13,7 @@ class JobListingController extends Controller
      */
     public function index()
     {
-        $jobs = JobListing::latest()->get();
+        $jobs = JobListing::latest()->paginate(10);
         return view('jobs.index', compact('jobs'));
     }
 
@@ -48,32 +48,53 @@ class JobListingController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(JobListing $jobListing)
+    public function show(JobListing $job)
     {
-        //
+        return view('jobs.show', compact('job'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(JobListing $jobListing)
+    public function edit(JobListing $job)
     {
-        //
+        $orgs = Organization::all();
+        return view('jobs.edit', compact('job', 'orgs'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, JobListing $jobListing)
+    public function update(Request $request, JobListing $job)
     {
-        //
+        $job->title = $request->title;
+        $job->body = $request->body;
+        $job->address = $request->address;
+        $job->organization_id = $request->organization_id;
+        $job->salary = $request->salary;
+        $job->deadline = $request->deadline;
+        $job->save();
+        return redirect()->route('job.index');
+        // dd($request->all());
     }
-
+    
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(JobListing $jobListing)
     {
         //
+    }
+    
+    public function publish(JobListing $job) {
+        if ($job->publish == '1') {
+            $job->publish = 0;
+            $job->save();
+        }
+        else{
+            $job->publish = 1;
+            $job->save();
+        }
+        return redirect()->route('job.index');
     }
 }

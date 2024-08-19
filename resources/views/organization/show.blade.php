@@ -18,7 +18,7 @@
                 </div>
             </dl>
             <div class="pt-4 flex gap-2">
-                <form action="/organization/edit/{{$id->id}}" method="get">
+                <form action="/organization/{{$id->id}}/edit" method="get">
                     @csrf
                     <button class="bg-blue-700 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-500" type="submit">Edit</button>
                 </form>
